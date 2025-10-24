@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>May La Min San</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <!-- naviagtion bar -->
+         
+        <nav class="navi-bar">
+                <a href="">Home</a>
+                <a href="">About</a>
+                <a href="">Friends</a>
+                <a href="">Boyfriend</a>
+                <a href="">Contact</a>
+        </nav>   
+        
+        <!-- container -->
+        <div class="container">
+            <div class="section-1">
+                <div class="image-holder">
+                    <img src="bubu-wine.webp" alt="Bubu chill with wine" class="circle-image">
+                </div>
+                <div class="text">
+                    <p>Welcome to my Portfolio website <br>
+                    Please register to enter my website <br> 
+                    (note:if you know the password 🤭)
+                    </p>
+                </div>
+            </div>
+            <div class="section-2">
+                <form method="post" class="form-group" id="loginForm">
+                      
+                        <label for="name">Name:</label><br>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+                        <label for="password">Password:</label><br>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <br><br>
+                        <input type="submit" id="submit" value=" Login " class="submitBtn">
+                </form>
+            </div>
+        </div>
+        <footer>
+            <p><small>This website is developed by Bhone Pyae Sone,
+            a skillful Webdeveloper. <br>If you're finding a developer for your website, contact my email  
+            <a href="mailto:madmax347124@gmail.com">madmax347124@gmail.com</a>   
+        </small>
+            </p>
+        </footer>
+
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var myPassword = "322005";
+                var userPassword = document.getElementById('password').value;
+                if (userPassword === myPassword) {
+                    window.location.href = "home.html";
+                } else {
+                    alert("error");
+                }
+            });
+        </script>
+    </body>
+</html>

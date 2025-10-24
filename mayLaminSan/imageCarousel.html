@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Slide Image Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .carousel-container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-nav button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-nav button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background-color: white;
+        }
+
+        @media (max-width: 600px) {
+            .carousel-slide {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-slides">
+            <div class="carousel-slide">
+                <img src="https://picsum.photos/id/1015/800/400" alt="Landscape 1">
+                <div class="carousel-caption">သဘာဝရဲ့ အလှတရား</div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://picsum.photos/id/1018/800/400" alt="Landscape 2">
+                <div class="carousel-caption">တောင်တန်းများရဲ့ ခမ်းနားမှု</div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://picsum.photos/id/1025/800/400" alt="Landscape 3">
+                <div class="carousel-caption">ပင်လယ်ပြင်ရဲ့ ငြိမ်းချမ်းမှု</div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://picsum.photos/id/1039/800/400" alt="Landscape 4">
+                <div class="carousel-caption">သစ်တောရဲ့ လှပမှု</div>
+            </div>
+        </div>
+        
+        <div class="carousel-nav">
+            <button class="prev-btn">&#10094;</button>
+            <button class="next-btn">&#10095;</button>
+        </div>
+        
+        <div class="carousel-indicators">
+            <div class="carousel-indicator active"></div>
+            <div class="carousel-indicator"></div>
+            <div class="carousel-indicator"></div>
+            <div class="carousel-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // လက်ရှိ slide ကို သိမ်းထားမယ့် variable
+            let currentSlide = 0;
+            
+            // slides, indicators, buttons တွေကို select လုပ်ခြင်း
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const slidesContainer = document.querySelector('.carousel-slides');
+            
+            // slide စုစုပေါင်း
+            const totalSlides = slides.length;
+            
+            // slide ကို ပြောင်းပေးမယ့် function
+            function goToSlide(slideIndex) {
+                // slide index ကို 0 နဲ့ totalSlides-1 ကြားမှာ ရှိအောင် လုပ်ခြင်း
+                if (slideIndex < 0) {
+                    currentSlide = totalSlides - 1;
+                } else if (slideIndex >= totalSlides) {
+                    currentSlide = 0;
+                } else {
+                    currentSlide = slideIndex;
+                }
+                
+                // slide ကို ရွှေ့ခြင်း
+                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // indicators တွေကို update လုပ်ခြင်း
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // နောက်သို့ slide ပြောင်းခြင်း
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // ရှေ့သို့ slide ပြောင်းခြင်း
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+            
+            // auto slide အတွက် timer
+            let slideInterval = setInterval(nextSlide, 3000);
+            
+            // buttons တွေကို click event ထည့်ခြင်း
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                resetInterval();
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                resetInterval();
+            });
+            
+            // indicators တွေကို click event ထည့်ခြင်း
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    goToSlide(index);
+                    resetInterval();
+                });
+            });
+            
+            // auto slide interval ကို reset လုပ်ခြင်း
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 3000);
+            }
+            
+            // mouse နဲ့ hover လုပ်ရင် auto slide ကို ရပ်ထားခြင်း
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', function() {
+                clearInterval(slideInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', function() {
+                resetInterval();
+            });
+        });
+    </script>
+</body>
+</html>

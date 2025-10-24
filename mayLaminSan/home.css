@@ -1,0 +1,217 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#89f7fe 0%,#66a6ff 100%);
+ 
+    color:#1e0a04; 
+    font-family: Arial, Helvetica, sans-serif; 
+}
+/* nav-bar */
+.navi-bar {
+    display: flex;
+    width: 100%;
+    background-color:rgb(12, 33, 66) ;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: sticky;top:0;
+    
+}
+.navi-bar a {
+    color:white;
+    text-decoration: none;
+    padding: 8px 8px;
+    /* color: aliceblue; */
+    font-weight: bold;
+    position: relative;
+    transition: 0.5s ease;
+    font-size: 0.85rem;
+}
+.navi-bar a:hover {
+    color: red;
+}
+.navi-bar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: width 0.3s ease;
+    background-color: red;
+}
+.navi-bar a:hover::after {
+    width: 100%;
+}
+/* responsive for nav */
+@media (max-width:600px) {
+    .navi-bar {
+        padding: 5px;
+        gap: 3px;
+        flex-wrap: wrap;
+    }
+    .navi-bar a {
+        font-size: 0.5rem;
+        padding: 3px 5px;
+    }
+}
+
+
+/* container */
+.container{
+  display: flex;
+  flex-direction: column;
+  padding:10px; /* keeps equal left/right padding on the page */
+  gap: 10px;
+}
+ 
+ 
+ 
+/* introduction */
+.introduction{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  /* background:linear-gradient(to bottom right,rgb(255, 140, 0),rgb(193, 198, 40),rgb(215, 216, 158)); */
+  border-radius: 12px;
+  height: auto;
+  gap: 10px;
+}
+.paragraph{
+  background-color: rgba(250, 244, 244, 0.342);
+  padding: 16px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px; 
+}
+.name{
+  color: orangered;
+  font-size: 30px;
+  font-weight: bold;
+}
+.work{
+  color:blue;
+  font-size: 30px;
+  font-weight: bold;
+}
+.circle-profile{
+  margin-left: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  height:310px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+.circle-image{
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* max-width: 100%; prevent overflow on small screens */
+ }
+/* responsive for introduction */
+@media (max-width:700px ){
+  .introduction{
+    flex-direction: column;
+    padding:5px;
+    /* align-items: flex-end; */
+    align-items: center;
+  }
+  .paragraph{
+    margin-right: 0;
+    padding:8px;
+    font-size: 0.8rem;
+  }
+  .name{
+    font-size: 1rem;
+  }
+  .work{
+    font-size: 1rem;
+  }
+  .circle-profile{
+    object-fit: cover;
+    margin-left:0px;
+    width:130px;
+    height:130px;
+    border: 2px solid white;
+    
+  }
+  .circle-image{
+    width:100%;
+    height:100%;
+  }
+}
+
+/* footer starts here */
+footer{
+  font-size: 0.8rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  height: auto;
+  padding: 20px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  /* background:linear-gradient(to bottom right,rgb(34, 31, 31),rgb(69, 61, 61),rgb(92, 80, 80)); */
+  background: linear-gradient(to bottom, 
+    #5eabcc 0%,     /* အမှောင်ပြာ */
+    #203A43 50%,    /* ပြာနက် */
+    #2C5364 100%    /* ပြာရောင် */
+);
+
+}
+.gifcontainer{
+  width: 100px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+.gif{
+  width: 100%;
+  object-fit:cover;
+ }
+.aboutBtn{
+  padding: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: rgba(5, 124, 251, 0.993);
+  color:white;
+  border-radius: 12px;
+  border:2px solid white;
+  transition: 0.5s;
+}
+.aboutBtn:hover{
+  background-color: blue;
+  cursor: pointer;
+}
+
+/* responsive for footer */
+@media (max-width:700px ){
+  footer{
+    padding:10px;
+  }
+  .gifcontainer{
+    width:90px;
+  }
+  .gif{
+    width:100%;
+  }
+  .aboutBtn{
+    padding:4px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 14px;
+  }
+}

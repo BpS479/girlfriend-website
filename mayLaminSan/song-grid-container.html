@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>song songs-grid-container</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset + box sizing */
+        * { box-sizing: border-box; padding: 0; margin: 0; }
+
+        body {
+            background: rgba(21, 21, 48, 0.836);
+            color: orangered;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .section-4 {
+            width: 100%;
+            margin: 24px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .section-4 h2 {
+            color: orangered;
+            font-size: 1.4rem;
+        }
+
+        /* responsive grid: auto-fit / minmax makes it adapt smoothly */
+        .song-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            align-items: start;
+        }
+
+        /* Card: use relative height via max-height transitions */
+        .song-card {
+            width: 100%;
+            background-color: #ffffff;
+            color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.25s ease, transform 0.15s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            /* collapse hidden content by default using max-height on .hidden-content instead of card */
+        }
+
+        .song-card:focus {
+            outline: 2px solid rgba(255,69,0,0.35);
+            outline-offset: 2px;
+        }
+
+        .song-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: #111;
+            margin: 4px 0;
+            word-break: break-word;
+        }
+
+        /* Hidden content will animate opacity and max-height */
+        .hidden-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6px 10px;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity 0.28s ease, transform 0.28s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .song-card.expanded .hidden-content {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 600px; /* large enough to reveal content */
+        }
+
+        .song-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            object-fit: cover;
+            animation: rotate 6s linear infinite;
+            background: #f0f0f0;
+        }
+
+        .song-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hidden-content audio {
+            width: 100%;
+            max-width: 100%;
+            height: 36px;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Smaller screens adjustments */
+        @media (max-width: 900px) {
+            .song-container { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+            .song-image { width: 110px; height: 110px; }
+        }
+
+        @media (max-width: 600px) {
+            .section-4 {margin:0; padding: 12px;  }
+            .song-container { grid-template-columns: 1fr; gap: 12px; }
+            .song-image { width: 96px; height: 96px; animation-duration: 8s; }
+            .hidden-content { padding-bottom: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="section-4">
+        <h2>My Favorite Songs</h2>
+        <div class="song-container">
+           <div class="song-card expandable" role="button" aria-expanded="false" tabindex="0">
+                <h4>Phan Thar Nan Taw</h4>
+                <div class="hidden-content">
+                    <div class="song-image">
+                        <img src="phantharnantaw.jpg" alt="cover">
+                    </div>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+           </div>
+           <div class="song-card expandable" role="button" aria-expanded="false" tabindex="0">
+                <h4>Phan Thar Nan Taw</h4>
+                <div class="hidden-content">
+                    <div class="song-image">
+                        <img src="phantharnantaw.jpg" alt="cover">
+                    </div>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+           </div>
+           <div class="song-card expandable" role="button" aria-expanded="false" tabindex="0">
+                <h4>Phan Thar Nan Taw</h4>
+                <div class="hidden-content">
+                    <div class="song-image">
+                        <img src="phantharnantaw.jpg" alt="cover">
+                    </div>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+           </div>
+           <div class="song-card expandable" role="button" aria-expanded="false" tabindex="0">
+                <h4>Phan Thar Nan Taw</h4>
+                <div class="hidden-content">
+                    <div class="song-image">
+                        <img src="phantharnantaw.jpg" alt="cover">
+                    </div>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+           </div>
+           <div class="song-card expandable" role="button" aria-expanded="false" tabindex="0">
+                <h4>Phan Thar Nan Taw</h4>
+                <div class="hidden-content">
+                    <div class="song-image">
+                        <img src="phantharnantaw.jpg" alt="cover">
+                    </div>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+           </div>
+           <div class="song-card expandable" role="button" aria-expanded="false" tabindex="0">
+                <h4>Phan Thar Nan Taw</h4>
+                <div class="hidden-content">
+                    <div class="song-image">
+                        <img src="phantharnantaw.jpg" alt="cover">
+                    </div>
+                    <audio controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+           </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle expand/collapse, support keyboard (Enter/Space)
+        const cards = document.querySelectorAll('.expandable');
+        cards.forEach(card => {
+            const toggle = () => {
+                const expanded = card.classList.toggle('expanded');
+                card.setAttribute('aria-expanded', expanded);
+            };
+            card.addEventListener('click', toggle);
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                    e.preventDefault();
+                    toggle();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

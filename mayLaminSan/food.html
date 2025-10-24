@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Favorite Food</title>
+        <style>
+            .container{
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+            .first-item{
+                display: flex;
+                flex-direction: row;
+                gap: 200px;
+                padding: 20px;
+                width: 100%;
+                height: auto;
+                justify-content: center;
+                align-items: center;
+            }
+            .description{
+                justify-content: center;
+                align-items: center;
+            }
+            .image-container{
+                width: 250px;
+                height: 250px;
+                justify-content: center;
+                align-items: center;
+                object-fit: cover;
+                filter: drop-shadow(1px 1px 20px rgb(0, 0, 0));
+            }
+            .image-container img{
+                width: 100%;
+                height: 100%;
+            }
+            .image-container img:hover{
+                transform: scale(1.1);
+                transition: all 0.3s ease-in-out;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>This is my Favorite Food</h1>
+            <div class="first-item">
+                <div class="description">
+                    <h2>Coffee</h2>
+                    <p>A popular beverage made from roasted coffee beans.</p><br>
+                    <p>A popular beverage made from roasted coffee beans.</p><br>
+                    <p>A popular beverage made from roasted coffee beans.</p><br>
+                 </div>
+                <div class="image-container">
+                    <img src="vecteezy_latte-coffee-isolated-illustration_23742327.png" alt="">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
